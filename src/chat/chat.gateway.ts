@@ -15,17 +15,20 @@ export class ChatGateway implements OnGatewayInit {
 
   @SubscribeMessage('chatToServer')
   handleMessage(client: Socket, message: { sender: string, room: string, message: string }) {
+    this.logger.log(`🙍 ${message.sender} is in room 🏘️  ${message.room} and 📤 send ${message.message}`);
     this.wss.to(message.room).emit('chatToClient', message);
   }
 
   @SubscribeMessage('joinRoom')
   handleRoomJoin(client: Socket, room: string ) {
+    this.logger.log('🙍 Someone is  join room ✔️');
     client.join(room);
     client.emit('joinedRoom', room);
   }
 
   @SubscribeMessage('leaveRoom')
   handleRoomLeave(client: Socket, room: string ) {
+    this.logger.log('🙍 Someone is leave room ❌');
     client.leave(room);
     client.emit('leftRoom', room);
   }
