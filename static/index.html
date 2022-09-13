@@ -80,6 +80,8 @@
                 toggleRoomMembership() {
                     if (this.isMemberOfActiveRoom) {
                         this.socket.chat.emit('leaveRoom', this.activeRoom);
+                        // this.socket.chat.emit('leaveRoom');
+
                     } else {
                         this.socket.chat.emit('joinRoom', this.activeRoom);
                     }

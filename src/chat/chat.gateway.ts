@@ -21,14 +21,14 @@ export class ChatGateway implements OnGatewayInit {
 
   @SubscribeMessage('joinRoom')
   handleRoomJoin(client: Socket, room: string ) {
-    this.logger.log('🙍 Someone is  join room ✔️');
+    this.logger.log(`🙍 Someone is  join room ${room} ✔️`);
     client.join(room);
     client.emit('joinedRoom', room);
   }
 
   @SubscribeMessage('leaveRoom')
   handleRoomLeave(client: Socket, room: string ) {
-    this.logger.log('🙍 Someone is leave room ❌');
+    this.logger.log(`🙍 Someone is leave room ${room} ❌`);
     client.leave(room);
     client.emit('leftRoom', room);
   }
